@@ -9,6 +9,7 @@
 </head>
 <body>
   <section class="memory-game">
+
     <div class="memory-card" id="m1c1" data-match="../img/energy-efficiency/a.png">
       <img class="front-face" id="m1c1f" src="../img/alphabet/a.svg" alt="BPF-logo" />
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
@@ -63,9 +64,9 @@
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
     </div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-     <!-- Modal content -->
+    <!-- Match Modal -->
+    <div id="matchModal" class="modal">
+     <!-- Match Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
         <img id="match" src="" width="100%" height="100%">
@@ -73,6 +74,17 @@
 
     </div>
 
+    <!-- Game Over Modal -->
+    <div id="overModal" class="modal">
+      <!-- Over Modal content -->
+       <div class="over-modal-content">
+         <span class="close">&times;</span>
+         <p>Nice job! You found all the matches!</p>
+         <p id="misses">You made 6 matches with only 3 misses.</p>
+         <p>Do you want to...</p>
+         <button class="modal-btn" onclick="window.location.reload();">Play Again?</button>
+       </div>
+     </div>
   </section>
 
   <script src="scripts.js"></script>

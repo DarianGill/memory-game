@@ -3,12 +3,21 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+var matches = 0;
+var misses = 0;
 
-(function chooseLetters() {
+(function initialize() {
+  chooseLetters();
+  // shuffleCards();
+  cards.forEach(card => card.addEventListener('click', flipCard));
+  openOverModal();
+}());
+
+function chooseLetters() {
   var randLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','S','T','U','V','W','X','Y','Z']
   shuffle(randLetters)
   
-  //On Match Display...../img/energy-efficiency/1c1").src = "../img/energy-efficiency/"+randLetters[0]+".svg"
+  //On Match Display.....
   document.getElementById("m1c1").dataset.src = "../img/energy-efficiency/"+randLetters[0]+".png"
   document.getElementById("m1c2").dataset.src = "../img/energy-efficiency/"+randLetters[0]+".png"
   document.getElementById("m2c1").dataset.src = "../img/energy-efficiency/"+randLetters[1]+".png"
@@ -34,7 +43,14 @@ let firstCard, secondCard;
   document.getElementById("m5c2f").src = "../img/alphabet/"+randLetters[4]+".svg"
   document.getElementById("m6c1f").src = "../img/alphabet/"+randLetters[5]+".svg"
   document.getElementById("m6c2f").src = "../img/alphabet/"+randLetters[5]+".svg"
-})();
+}
+
+function shuffleCards() {
+  cards.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 12);
+    card.style.order = randomPos;
+  });
+}
 
 function flipCard() {
   if (lockBoard) return;
@@ -63,28 +79,15 @@ function checkForMatch() {
 }
 
 function disableCards() {
+  matches ++;
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
-
-  //Set modal img
-  document.getElementById("match").src = firstCard.dataset.src
-  modal.style.display = "block";
-  
-  // Close when click x
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
+  openMatchModal();
   resetBoard();
 }
 
 function unflipCards() {
+  misses++;
   lockBoard = true;
 
   setTimeout(() => {
@@ -100,54 +103,60 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
-  cards.forEach(card => {
-    let randomPos = Math.floor(Math.random() * 16);
-    card.style.order = randomPos;
-  });
-})();
-
-cards.forEach(card => card.addEventListener('click', flipCard));
-
-
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-
     // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
+function openMatchModal() {
+  //Set modal and content
+  var modal = document.getElementById("matchModal");
+  document.getElementById("match").src = firstCard.dataset.src;
+  var span = document.getElementsByClassName("close")[0];
   modal.style.display = "block";
+  // Close when click x
+  span.onclick = function() {
+    modal.style.display = "none";
+      if(matches == 6) {openOverModal()}
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      if(matches == 6) {openOverModal()}
+    }
+  }
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+function openOverModal() {
+  //Set modal and content
+  var modal = document.getElementById("overModal");
+  var span = document.getElementsByClassName("close")[1];
+  if (misses == 1) {
+    document.getElementById("misses").innerHTML = "You made 6 matches with only 1 miss!";
+  }
+  else {
+    document.getElementById("misses").innerHTML = "You made 6 matches with "+misses+" misses!";
+  }
+  modal.style.display = "block";
+  // Close when click x
+  span.onclick = function() {
     modal.style.display = "none";
   }
+  // // When the user clicks anywhere outside of the modal, close it
+  // window.onclick = function(event) {
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // }
 }
