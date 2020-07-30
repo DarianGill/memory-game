@@ -86,12 +86,16 @@ body {
 /* Modal Content */
 .modal-content {
   position: absolute;
-   top: 50%;
-   left: 50%;
-   width:40%;
-   height: auto;
-   margin-top: -25%; /* Half the height */
-   margin-left: -20%; /* Half the width */
+  top: 50%;
+  left: 50%;
+  width:40%;
+  height: auto;
+  margin-top: -25%; /* Half the height */
+  margin-left: -20%; /* Half the width */
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
 }
 
 .over-modal-content {
@@ -105,12 +109,30 @@ body {
   left: 50%;
   width:40%;
   height: auto;
-  margin-top: -10%; /* Half the height? */
+  margin-top: -15%; /* Half the height? */
   margin-left: -20%; /* Half the width */
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1C7CCC;
+  font-weight: bold;
+}
+
+.emoji {
+  margin-left: 3.5%;
 }
 
 .modal-btn {
-  font-size: .875rem;
+  margin-top: 1rem;
+  font-size: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: .5rem;
@@ -124,19 +146,6 @@ body {
 }
 
 /* Add Animation */
-.modal-content, #caption {  
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-.over-modal-content, #caption {  
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
 
 @-webkit-keyframes zoom {
   from {-webkit-transform:scale(0)} 

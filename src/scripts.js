@@ -8,9 +8,9 @@ var misses = 0;
 
 (function initialize() {
   chooseLetters();
-  // shuffleCards();
+  shuffleCards();
   cards.forEach(card => card.addEventListener('click', flipCard));
-  openOverModal();
+  // openOverModal();
 }());
 
 function chooseLetters() {
