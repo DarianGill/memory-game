@@ -7,7 +7,8 @@
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="initialize()">
+
   <section class="memory-game">
 
     <div class="memory-card" id="m1c1" data-match="../img/energy-efficiency/a.png">
@@ -64,6 +65,19 @@
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
     </div>
 
+    <!-- Start Modal -->
+    <div id="startModal" class="modal">
+      <!-- Start Modal content -->
+       <div class="over-modal-content">
+         <span class="emoji">&#127774 &#128268 &#128288 &#128267 &#127774</span>
+         <p class="title">Welcome to Energy Efficiency A-Z</p>
+         <p>Tap the cards to uncover the letters, and match the letters to unlock energy tips!</p>
+         <p>How many guesses will you take?</p>
+         <button id="start-btn" class="modal-btn">Play Game</button>
+       </div>
+     </div>
+    </div>
+    
     <!-- Match Modal -->
     <div id="matchModal" class="modal">
      <!-- Match Modal content -->
@@ -71,7 +85,6 @@
         <span class="close">&times;</span>
         <img id="match" src="" width="100%" height="100%">
       </div>
-
     </div>
 
     <!-- Game Over Modal -->

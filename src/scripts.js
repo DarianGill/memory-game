@@ -5,18 +5,22 @@ let lockBoard = false;
 let firstCard, secondCard;
 var matches = 0;
 var misses = 0;
+var matchSound = new Audio("../sound/match.mp3");
+var winSound = new Audio("../sound/win.mp3");
+var flipSound = new Audio("../sound/flip.mp3");
+var missSound = new Audio("../sound/miss2.mp3");
 
-(function initialize() {
+function initialize() {
   chooseLetters();
   shuffleCards();
   cards.forEach(card => card.addEventListener('click', flipCard));
-  // openOverModal();
-}());
+  openStartModal();
+}
 
 function chooseLetters() {
   var randLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','S','T','U','V','W','X','Y','Z']
   shuffle(randLetters)
-  
+
   //On Match Display.....
   document.getElementById("m1c1").dataset.src = "../img/energy-efficiency/"+randLetters[0]+".png"
   document.getElementById("m1c2").dataset.src = "../img/energy-efficiency/"+randLetters[0]+".png"
@@ -57,12 +61,13 @@ function flipCard() {
   if (this === firstCard) return;
 
   this.classList.add('flip');
+  flipSound.play();
 
   if (!hasFlippedCard) {
     // first click
     hasFlippedCard = true;
     firstCard = this;
-
+    
     return;
   }
 
@@ -91,6 +96,7 @@ function unflipCards() {
   lockBoard = true;
 
   setTimeout(() => {
+    missSound.play();
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
 
@@ -118,7 +124,19 @@ function shuffle(array) {
   return array;
 }
 
+function openStartModal() {
+  //Set modal and content
+  var modal = document.getElementById("startModal");
+  var btn = document.getElementById("start-btn");
+  modal.style.display = "block";
+  // Close when click x
+  btn.onclick = function() {
+    modal.style.display = "none";
+  }
+}
+
 function openMatchModal() {
+  matchSound.play();
   //Set modal and content
   var modal = document.getElementById("matchModal");
   document.getElementById("match").src = firstCard.dataset.src;
@@ -139,6 +157,7 @@ function openMatchModal() {
 }
 
 function openOverModal() {
+  winSound.play();
   //Set modal and content
   var modal = document.getElementById("overModal");
   var span = document.getElementsByClassName("close")[1];
@@ -153,10 +172,11 @@ function openOverModal() {
   span.onclick = function() {
     modal.style.display = "none";
   }
+
+}
   // // When the user clicks anywhere outside of the modal, close it
   // window.onclick = function(event) {
   //   if (event.target == modal) {
   //     modal.style.display = "none";
   //   }
   // }
-}
