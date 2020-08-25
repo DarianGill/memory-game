@@ -1,14 +1,16 @@
 const cards = document.querySelectorAll('.memory-card');
-
+//Game
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+//Score
 var matches = 0;
 var misses = 0;
+//SFX
 var matchSound = new Audio("../sound/match.mp3");
 var winSound = new Audio("../sound/win.mp3");
 var flipSound = new Audio("../sound/flip.mp3");
-var missSound = new Audio("../sound/miss2.mp3");
+var missSound = new Audio("../sound/miss.mp3");
 
 function initialize() {
   chooseLetters();
@@ -174,9 +176,3 @@ function openOverModal() {
   }
 
 }
-  // // When the user clicks anywhere outside of the modal, close it
-  // window.onclick = function(event) {
-  //   if (event.target == modal) {
-  //     modal.style.display = "none";
-  //   }
-  // }

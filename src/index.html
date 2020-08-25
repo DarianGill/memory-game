@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Memory Game</title>
+  <title>Energy Efficeincy A-Z Memory Game</title>
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,15 +11,18 @@
 
   <section class="memory-game">
 
+    <!-- Match One Card One -->
     <div class="memory-card" id="m1c1" data-match="../img/energy-efficiency/a.png">
       <img class="front-face" id="m1c1f" src="../img/alphabet/a.svg" alt="BPF-logo" />
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
     </div>
+    <!-- Match One Card Two -->
     <div class="memory-card" id="m1c2" data-match="../img/energy-efficiency/a.png">
       <img class="front-face" id="m1c2f" src="../img/alphabet/a.svg" alt="BPF-logo" />
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
     </div>
 
+    <!-- Match Two... -->
     <div class="memory-card" id="m2c1" data-match="../img/energy-efficiency/b.png">
       <img class="front-face" id="m2c1f" src="../img/alphabet/b.svg" alt="BPF-logo" />
       <img class="back-face" src="../img/az-backside.svg" alt="BPF-logo" />
@@ -68,7 +71,7 @@
     <!-- Start Modal -->
     <div id="startModal" class="modal">
       <!-- Start Modal content -->
-       <div class="over-modal-content">
+       <div class="modal-content">
          <span class="emoji">&#127774 &#128268 &#128288 &#128267 &#127774</span>
          <p class="title">Welcome to Energy Efficiency A-Z</p>
          <p>Tap the cards to uncover the letters, and match the letters to unlock energy tips!</p>
@@ -81,7 +84,7 @@
     <!-- Match Modal -->
     <div id="matchModal" class="modal">
      <!-- Match Modal content -->
-      <div class="modal-content">
+      <div class="match-modal-content">
         <span class="close">&times;</span>
         <img id="match" src="" width="100%" height="100%">
       </div>
@@ -90,7 +93,7 @@
     <!-- Game Over Modal -->
     <div id="overModal" class="modal">
       <!-- Over Modal content -->
-       <div class="over-modal-content">
+       <div class="modal-content">
          <span class="close">&times;</span>
          <span class="emoji">&#129351 &#127881 &#127942 &#127881 &#129351</span>
          <p class="title">Nice job!</p>

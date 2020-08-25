@@ -83,8 +83,8 @@ body {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
-.modal-content {
+/* Match Modal Content */
+.match-modal-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -98,7 +98,8 @@ body {
   animation-duration: 0.6s;
 }
 
-.over-modal-content {
+/* Modal Content */
+.modal-content {
   background-color: #ffff;
   padding: 10px;
   border-radius: 4px;
